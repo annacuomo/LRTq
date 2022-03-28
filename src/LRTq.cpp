@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include <cmath>
 
 using namespace Rcpp;
 
@@ -52,8 +53,8 @@ double LRTq(NumericVector expr, IntegerMatrix geno, NumericVector causal_ratio, 
   NumericVector ln_a(K), ln_b_pre(K), sigma_var(K);
   sigma = ss(expr);
   sigma_var = find_sigma_var(expr, idv_rare, K, N);
-  ln_a = log(1 - causal_ratio) - N / 2 * log(2 * PI * sigma) - N / 2;
-  ln_b_pre = log(causal_ratio) - N / 2 * log(2 * PI) - N / 2;
+  ln_a = log(1 - causal_ratio) - N / 2 * log(2 * M_PI * sigma) - N / 2;
+  ln_b_pre = log(causal_ratio) - N / 2 * log(2 * M_PI) - N / 2;
   l0 = sum(ln_a);
 
   // unpermuted LRT-q statisitcs
